@@ -1,0 +1,11 @@
+name: PublicationCosts
+title: PublicationCosts
+account: sipismi
+server: shinyapps.io
+appId: 201730
+bundleId: 925894
+url: https://sipismi.shinyapps.io/PublicationCosts/
+when: 1501749419.55298
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Pitch.Rmd|Pitch.html

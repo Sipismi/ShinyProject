@@ -7,6 +7,7 @@ output: slidy_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
 ```
 
 ## Introduction - Open science
@@ -22,15 +23,56 @@ knitr::opts_chunk$set(echo = FALSE)
 - User is able to use slider to select year to which predict the costs 
 - The predicted values are highlighted and compared to 2010 level to give some scale to the values 
 - The webapp is very simple to use but instructions are provided on the page to support novice users. 
-
+- [The app](https://sipismi.shinyapps.io/PublicationCosts/)
 
 ## Algorithm
+Very simple linear regression algorithm is used example code given bellow (evaluated on next slide)
+```{r, echo=TRUE, eval=FALSE,tidy=TRUE  }
+costs <- read.csv("Publisher_Costs_FI_Full_Data.csv")
 
-```{r }
+#User inputs (deafult values)
+uni <- "Aalto University"
+year <- "2050"
+costs <- filter(costs, Publisher.Supplier == "Elsevier") %>% filter(X...Organization.name == uni)
+
+#building prediction model
+model.i <- lm(Cost~Year, costs)
+#makin prediction
+y <- predict(model.i, data.frame(Year = year))
+#add prediction to values
+yearlyCosts <- c(costs$Cost, y)
+#create vector to color the predicted bar differently 
+colours <- c(rep("gray", length(costs$Cost)), "red")
+#Create plot
+barplot(yearlyCosts, names.arg = c(costs$Year, year) , col = colours, xlab = "Year", ylab="Subscription Cost (EUR)")
+
+#Text output
+z <- y/costs$Cost[1]
+paste(uni, "will pay", signif(y, digits = 4), "EUR at",year, ".", "This is", round(z, digits=2), "times the 2010 level"  )    
 
 ```
 
-## Thank you
+## The code produces this output
+
+```{r, echo=FALSE, eval=TRUE, }
+costs <- read.csv("Publisher_Costs_FI_Full_Data.csv")
+uni <- "Aalto University"
+costs <- filter(costs, Publisher.Supplier == "Elsevier") %>% filter(X...Organization.name == uni)
+
+model.i <- lm(Cost~Year, costs)
+    y <- predict(model.i, data.frame(Year = 2050))
+    #add prediction to values
+    yearlyCosts <- c(costs$Cost, y)
+    #create vector to color the predicted bar differently 
+    colours <- c(rep("gray", length(costs$Cost)), "red")
+    #Create plot
+    barplot(yearlyCosts, names.arg = c(costs$Year, 2050) , col = colours, xlab = "Year", ylab="Subscription Cost (EUR)")
+
+    z <- y/costs$Cost[1]
+      paste(uni, "will pay", signif(y, digits = 4), "EUR at",2050, ".", "This is", round(z, digits=2), "times the 2010 level"  )    
+
+```
+
 
 
 
