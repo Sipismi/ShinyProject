@@ -1,0 +1,36 @@
+---
+title: "Pitch for Elsevier Subscription cost calculator"
+author: "Joonas Siivonen"
+date: "8/3/2017"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction - Open science
+
+- The Finnish Open Science and Research Initiative (ATT) collected the publisher costs 2016.
+- Displaying this information and the increase in cost in interactivly increases knowledge on the high subscription costs more efficiently than static plots.
+- The data product can be placed for example univeristy library web site 
+- The increased knowledge will help with negotiations with the publishers and make a move towards open access
+
+
+## Engaging design
+
+- User is able to use slider to select year to which predict the costs 
+- The predicted values are highlighted and compared to 2010 level to give some scale to the values 
+- The webapp is very simple to use but instructions are provided on the page to support novice users. 
+
+
+## Algorithm
+
+```{r }
+
+```
+
+## Thank you
+
+
+
