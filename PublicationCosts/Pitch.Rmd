@@ -65,11 +65,12 @@ model.i <- lm(Cost~Year, costs)
     yearlyCosts <- c(costs$Cost, y)
     #create vector to color the predicted bar differently 
     colours <- c(rep("gray", length(costs$Cost)), "red")
+    #Text output  
+     z <- y/costs$Cost[1]
+      paste(uni, "will pay", signif(y, digits = 4), "EUR at",2050, ".", "This is", round(z, digits=2), "times the 2010 level"  )    
+    
     #Create plot
     barplot(yearlyCosts, names.arg = c(costs$Year, 2050) , col = colours, xlab = "Year", ylab="Subscription Cost (EUR)")
-
-    z <- y/costs$Cost[1]
-      paste(uni, "will pay", signif(y, digits = 4), "EUR at",2050, ".", "This is", round(z, digits=2), "times the 2010 level"  )    
 
 ```
 
